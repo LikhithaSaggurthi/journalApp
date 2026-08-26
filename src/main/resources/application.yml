@@ -2,7 +2,7 @@ weather:
   api:
     key : ${WEATHER_API_KEY}
 server:
-  port : 8081
+  port : ${SERVER_PORT}
 spring:
   redis:
     host: ${REDIS_HOST}
