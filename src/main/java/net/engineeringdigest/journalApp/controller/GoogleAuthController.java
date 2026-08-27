@@ -1,6 +1,7 @@
 package net.engineeringdigest.journalApp.controller;
 
 ;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.UserRepository;
@@ -24,6 +25,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/auth/google")
 @Slf4j
+@SecurityRequirement(name = "bearerAuth")
 public class GoogleAuthController {
 
     @Value("${spring.security.oauth2.client.registration.google.client-id}")

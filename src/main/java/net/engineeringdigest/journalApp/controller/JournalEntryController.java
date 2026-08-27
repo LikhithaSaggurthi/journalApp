@@ -1,6 +1,7 @@
 package net.engineeringdigest.journalApp.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import net.engineeringdigest.journalApp.entity.JournalEntry;
 import net.engineeringdigest.journalApp.entity.User;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/journal")
 @Tag(name = "Journal Entry APIs")
+@SecurityRequirement(name = "bearerAuth")
 public class JournalEntryController {
     @Autowired
     private JournalEntryService journalEntryService;
