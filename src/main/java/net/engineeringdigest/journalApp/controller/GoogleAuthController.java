@@ -25,7 +25,6 @@ import java.util.*;
 @RestController
 @RequestMapping("/auth/google")
 @Slf4j
-@SecurityRequirement(name = "bearerAuth")
 public class GoogleAuthController {
 
     @Value("${spring.security.oauth2.client.registration.google.client-id}")
