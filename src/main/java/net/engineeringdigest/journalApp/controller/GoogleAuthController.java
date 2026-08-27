@@ -55,7 +55,7 @@ public class GoogleAuthController {
             params.add("code", code);
             params.add("client_id", clientId);
             params.add("client_secret", clientSecret);
-            params.add("redirect_uri", "https://developers.google.com/oauthplayground");
+            params.add("redirect_uri", "https://sleepy-reef-81646-86f9d065758a.herokuapp.com/auth/google/callback");
             params.add("grant_type", "authorization_code");
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -84,7 +84,10 @@ public class GoogleAuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         } catch (Exception e) {
             log.error("Exception occurred while handleGoogleCallback ", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + e.getMessage());
+            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
