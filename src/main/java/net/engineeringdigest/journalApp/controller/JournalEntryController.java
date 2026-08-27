@@ -1,5 +1,7 @@
 package net.engineeringdigest.journalApp.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import net.engineeringdigest.journalApp.entity.JournalEntry;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.service.JournalEntryService;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/journal")
+@Tag(name = "Journal Entry APIs")
 public class JournalEntryController {
     @Autowired
     private JournalEntryService journalEntryService;
@@ -25,6 +28,7 @@ public class JournalEntryController {
     private UserService userService;
 
     @GetMapping
+    @Operation(summary = "Get all Journal entries of a user")
     public ResponseEntity<?> getAllJournalEntriesOfUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
@@ -37,6 +41,7 @@ public class JournalEntryController {
     }
 
     @PostMapping
+    @Operation(summary = "Create Journal entry")
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry) {
         // http://localhost:8081/journal POST
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -51,13 +56,15 @@ public class JournalEntryController {
     }
 
     @GetMapping("/id/{myId}")
-    public ResponseEntity<JournalEntry> getJournalEntryByID(@PathVariable ObjectId myId) {
+    @Operation(summary = "Get all Journal entries by Id")
+    public ResponseEntity<JournalEntry> getJournalEntryByID(@PathVariable String myId) {
+        ObjectId objectId=new ObjectId(myId);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
         User user = userService.findByUsername(userName);
-        List<JournalEntry> collect = user.getJournalEntries().stream().filter(x -> x.getId().equals(myId)).collect(Collectors.toList());
+        List<JournalEntry> collect = user.getJournalEntries().stream().filter(x -> x.getId().equals(objectId)).collect(Collectors.toList());
         if (!collect.isEmpty()) {
-            Optional<JournalEntry> journalEntry = journalEntryService.findById(myId);
+            Optional<JournalEntry> journalEntry = journalEntryService.findById(objectId);
             if (journalEntry.isPresent()) {
                 return new ResponseEntity<>(journalEntry.get(), HttpStatus.OK);
             }
@@ -66,6 +73,7 @@ public class JournalEntryController {
     }
 
     @DeleteMapping("/id/{myId}")
+    @Operation(summary = "Delete Journal entry by Id")
     public ResponseEntity<?> deleteJournalEntryByID(@PathVariable ObjectId myId) {  //? indicates wildcard pattern
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -78,6 +86,7 @@ public class JournalEntryController {
     }
 
     @PutMapping("/id/{id}")
+    @Operation(summary = "Update Journal entry by Id")
     public ResponseEntity<?> updateJournalEntryByID(@PathVariable ObjectId id, @RequestBody JournalEntry newEntry) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
