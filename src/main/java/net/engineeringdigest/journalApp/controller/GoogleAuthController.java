@@ -85,17 +85,14 @@ public class GoogleAuthController {
         } catch (Exception e) {
 //            log.error("Exception occurred while handleGoogleCallback ", e);
 //            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-
-            log.error("Google OAuth error", e);
-
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Google OAuth error: " + e.getMessage());
+                e.printStackTrace();
+                return ResponseEntity
+                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("Google OAuth error: " + e);
         }
         }
 
     }
-}
 
 /*
 
