@@ -127,7 +127,7 @@ The application follows a layered architecture:
           │   MongoDB    │  │    Redis     │  │    Kafka     │
           │   Database   │  │    Cache     │  │   Messaging  │
           └──────────────┘  └──────────────┘  └──────────────┘
-
+```
 # 🔐 Authentication Flow
 
 ## 🪪 JWT Authentication
@@ -534,6 +534,10 @@ This project demonstrates practical backend development concepts including:
 # 👩‍💻 Author
 
 **Likhitha Saggurthi**
+
+For any queries, questions, or feedback, feel free to reach out:
+
+📧 **Email:** [likhithasaggurthi@gmail.com](mailto:likhithasaggurthi@gmail.com)
 
 Built with ❤️ using:
 
