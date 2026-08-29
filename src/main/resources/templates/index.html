@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Journal App</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f7fb;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 35px;
+            text-align: left;
+        }
+
+        .feature {
+            background: #f7f8fc;
+            padding: 15px;
+            border-radius: 10px;
+            color: #444;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .swagger {
+            background: #222;
+            color: white;
+        }
+
+        .swagger:hover {
+            background: #444;
+        }
+
+        .google {
+            background: white;
+            color: #444;
+            border: 1px solid #ddd;
+        }
+
+        .google:hover {
+            background: #f5f5f5;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">📖</div>
+
+    <h1>Journal App</h1>
+
+    <p class="description">
+        Your secure space for thoughts, memories, and reflections.
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+            🔐 Secure Authentication
+        </div>
+
+        <div class="feature">
+            📝 Manage Journal Entries
+        </div>
+
+        <div class="feature">
+            🤖 Sentiment Analysis
+        </div>
+
+        <div class="feature">
+            ☁️ Google Sign-In
+        </div>
+
+    </div>
+
+    <a href="/swagger-ui/index.html" class="button swagger">
+        📚 Explore API Documentation
+    </a>
+
+    <a href="/auth/google/login" class="button google">
+        🔵 Continue with Google
+    </a>
+
+    <div class="footer">
+        Spring Boot · MongoDB · JWT · Google OAuth 2.0
+    </div>
+
+</div>
+
+</body>
+</html>

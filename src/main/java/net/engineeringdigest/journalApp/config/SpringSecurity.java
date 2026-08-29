@@ -27,14 +27,25 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/journal/**","/user/**").authenticated()//*-->wildcard i.e., anything can come like id and user after /journal
-                .antMatchers("/admin/**").hasRole("ADMIN")//*-->wildcard i.e., anything can come like id and user after /journal
-                .anyRequest().permitAll();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable();
+
+        http
+                .authorizeRequests()
+                .antMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
+                .antMatchers("/auth/google/**").permitAll()
+                .antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .antMatchers("/public/**").permitAll()
+                .antMatchers("/journal/**", "/user/**").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .csrf().disable();
+
+        http
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -47,4 +58,5 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean()throws Exception{
         return super.authenticationManagerBean();
     }
+
 }

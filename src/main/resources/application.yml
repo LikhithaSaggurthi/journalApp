@@ -3,6 +3,9 @@ weather:
     key : ${WEATHER_API_KEY}
 server:
   port: ${PORT:8081}
+google:
+  oauth:
+    redirect-uri: ${GOOGLE_REDIRECT_URI}
 spring:
   security:
     oauth2:
